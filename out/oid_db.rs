@@ -12,12 +12,20 @@ pub const SPC_PE_IMAGE_DATA: Oid<'static> = oid!(1.3.6.1.4.1.311.2.1.15);
 pub const SPC_INDIVIDUAL_SP_KEY_PURPOSE_OBJID : Oid<'static> = oid!(1.3.6.1.4.1.311.2.1.21);
 /// 1.3.6.1.4.1.311.10.1
 pub const MS_CTL: Oid<'static> = oid!(1.3.6.1.4.1.311.10.1);
+/// 1.3.132.0.34
+pub const OID_NIST_EC_P384: Oid<'static> = oid!(1.3.132.0.34);
+/// 1.3.132.0.35
+pub const OID_NIST_EC_P521: Oid<'static> = oid!(1.3.132.0.35);
 /// 1.3.14.3.2.26
 pub const OID_HASH_SHA1: Oid<'static> = oid!(1.3.14.3.2.26);
 /// 2.16.840.1.101.3.4.1.42
 pub const OID_NIST_ENC_AES256_CBC: Oid<'static> = oid!(2.16.840.1.101.3.4.1.42);
 /// 2.16.840.1.101.3.4.2.1
 pub const OID_NIST_HASH_SHA256: Oid<'static> = oid!(2.16.840.1.101.3.4.2.1);
+/// 2.16.840.1.101.3.4.2.2
+pub const OID_NIST_HASH_SHA384: Oid<'static> = oid!(2.16.840.1.101.3.4.2.2);
+/// 2.16.840.1.101.3.4.2.3
+pub const OID_NIST_HASH_SHA512: Oid<'static> = oid!(2.16.840.1.101.3.4.2.3);
 /// 1.2.840.113549.1.1.1
 pub const OID_PKCS1_RSAENCRYPTION: Oid<'static> = oid!(1.2.840.113549.1.1.1);
 /// 1.2.840.113549.1.1.2
@@ -86,6 +94,8 @@ pub const OID_X500: Oid<'static> = oid!(2.5);
 pub const OID_DOMAIN_COMPONENT: Oid<'static> = oid!(0.9.2342.19200300.100.1.25);
 /// 1.3.101.112
 pub const OID_SIG_ED25519: Oid<'static> = oid!(1.3.101.112);
+/// 1.3.101.113
+pub const OID_SIG_ED448: Oid<'static> = oid!(1.3.101.113);
 /// 1.3.6.1.4.1.11129.2.4.2
 pub const OID_CT_LIST_SCT: Oid<'static> = oid!(1.3.6.1.4.1.11129.2.4.2);
 /// 1.3.6.1.5.5.7.1.1
@@ -208,6 +218,10 @@ pub const OID_SIG_ECDSA_WITH_SHA224: Oid<'static> = oid!(1.2.840.10045.4.3.1);
 pub const OID_SIG_ECDSA_WITH_SHA256: Oid<'static> = oid!(1.2.840.10045.4.3.2);
 /// 1.2.840.10045.4.3.3
 pub const OID_SIG_ECDSA_WITH_SHA384: Oid<'static> = oid!(1.2.840.10045.4.3.3);
+/// 1.2.840.10045.4.3.4
+pub const OID_SIG_ECDSA_WITH_SHA512: Oid<'static> = oid!(1.2.840.10045.4.3.4);
+/// 1.2.840.10045.3.1.7
+pub const OID_EC_P256: Oid<'static> = oid!(1.2.840.10045.3.1.7);
 
 impl<'a> OidRegistry<'a> {
     #[cfg(feature = "kdf")]
@@ -235,9 +249,13 @@ impl<'a> OidRegistry<'a> {
     #[cfg_attr(docsrs, doc(cfg(feature = "nist_algs")))]
     #[doc = "Load all known OIDs for feature `nist_algs` in the registry."]
     pub fn with_nist_algs(mut self) -> Self {
+        self.insert(oid!(1.3.132.0.34), OidEntry::new("secp384r1", "P-384 elliptic curve parameter"));
+        self.insert(oid!(1.3.132.0.35), OidEntry::new("secp521r1", "P-521 elliptic curve parameter"));
         self.insert(oid!(1.3.14.3.2.26), OidEntry::new("id-SHA1", "SHA-1 hash algorithm"));
         self.insert(oid!(2.16.840.1.101.3.4.1.42), OidEntry::new("aes-256-cbc", "256-bit Advanced Encryption Standard (AES) algorithm with Cipher-Block Chaining (CBC) mode of operation"));
         self.insert(oid!(2.16.840.1.101.3.4.2.1), OidEntry::new("sha256", "Secure Hash Algorithm that uses a 256 bit key (SHA256)"));
+        self.insert(oid!(2.16.840.1.101.3.4.2.2), OidEntry::new("sha384", "Secure Hash Algorithm that uses a 384 bit key (SHA384)"));
+        self.insert(oid!(2.16.840.1.101.3.4.2.3), OidEntry::new("sha512", "Secure Hash Algorithm that uses a 512 bit key (SHA512)"));
         self
     }
 
@@ -314,6 +332,7 @@ impl<'a> OidRegistry<'a> {
     pub fn with_x509(mut self) -> Self {
         self.insert(oid!(0.9.2342.19200300.100.1.25), OidEntry::new("domainComponent", "Domain component"));
         self.insert(oid!(1.3.101.112), OidEntry::new("ed25519", "Edwards-curve Digital Signature Algorithm (EdDSA) Ed25519"));
+        self.insert(oid!(1.3.101.113), OidEntry::new("ed448", "Edwards-curve Digital Signature Algorithm (EdDSA) Ed448"));
         self.insert(oid!(1.3.6.1.4.1.11129.2.4.2), OidEntry::new("ctSCTList", "Certificate Transparency Signed Certificate Timestamp List"));
         self.insert(oid!(1.3.6.1.5.5.7.1.1), OidEntry::new("authorityInfoAccess", "Certificate Authority Information Access"));
         self.insert(oid!(1.3.6.1.5.5.7.48.1), OidEntry::new("id-ad-ocsp", "PKIX Access Descriptor OCSP"));
@@ -382,6 +401,8 @@ impl<'a> OidRegistry<'a> {
         self.insert(oid!(1.2.840.10045.4.3.1), OidEntry::new("ecdsa-with-SHA224", "Elliptic curve Digital Signature Algorithm (DSA) coupled with the Secure Hash Algorithm 224 (SHA224) algorithm"));
         self.insert(oid!(1.2.840.10045.4.3.2), OidEntry::new("ecdsa-with-SHA256", "Elliptic curve Digital Signature Algorithm (DSA) coupled with the Secure Hash Algorithm 256 (SHA256) algorithm"));
         self.insert(oid!(1.2.840.10045.4.3.3), OidEntry::new("ecdsa-with-SHA384", "Elliptic curve Digital Signature Algorithm (DSA) coupled with the Secure Hash Algorithm 384 (SHA384) algorithm"));
+        self.insert(oid!(1.2.840.10045.4.3.4), OidEntry::new("ecdsa-with-SHA512", "Elliptic curve Digital Signature Algorithm (DSA) coupled with the Secure Hash Algorithm 512 (SHA512) algorithm"));
+        self.insert(oid!(1.2.840.10045.3.1.7), OidEntry::new("prime256v1", "P-256 elliptic curve parameter"));
         self
     }
 
