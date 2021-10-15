@@ -136,6 +136,8 @@ pub const OID_X509_KNOWLEDGE_INFORMATION: Oid<'static> = oid!(2.5.4.2);
 pub const OID_X509_COMMON_NAME: Oid<'static> = oid!(2.5.4.3);
 /// 2.5.4.4
 pub const OID_X509_SURNAME: Oid<'static> = oid!(2.5.4.4);
+/// 2.5.4.5
+pub const OID_X509_SERIALNUMBER: Oid<'static> = oid!(2.5.4.5);
 /// 2.5.4.6
 pub const OID_X509_COUNTRY_NAME: Oid<'static> = oid!(2.5.4.6);
 /// 2.5.4.7
@@ -160,6 +162,8 @@ pub const OID_X509_BUSINESS_CATEGORY: Oid<'static> = oid!(2.5.4.15);
 pub const OID_X509_POSTAL_ADDRESS: Oid<'static> = oid!(2.5.4.16);
 /// 2.5.4.17
 pub const OID_X509_POSTAL_CODE: Oid<'static> = oid!(2.5.4.17);
+/// 2.5.4.41
+pub const OID_X509_NAME: Oid<'static> = oid!(2.5.4.41);
 /// 2.5.4.42
 pub const OID_X509_GIVEN_NAME: Oid<'static> = oid!(2.5.4.42);
 /// 2.5.4.45
@@ -353,6 +357,7 @@ impl<'a> OidRegistry<'a> {
         self.insert(oid!(2.5.4.2), OidEntry::new("knowledgeInformation", "'knowledgeInformation' attribute type"));
         self.insert(oid!(2.5.4.3), OidEntry::new("commonName", "Common Name"));
         self.insert(oid!(2.5.4.4), OidEntry::new("surname", "Surname"));
+        self.insert(oid!(2.5.4.5), OidEntry::new("serialNumber", "Serial Number"));
         self.insert(oid!(2.5.4.6), OidEntry::new("countryName", "Country Name"));
         self.insert(oid!(2.5.4.7), OidEntry::new("localityName", "Locality Name"));
         self.insert(oid!(2.5.4.8), OidEntry::new("stateOrProvinceName", "State or Province name"));
@@ -365,6 +370,7 @@ impl<'a> OidRegistry<'a> {
         self.insert(oid!(2.5.4.15), OidEntry::new("businessCategory", "Business Category"));
         self.insert(oid!(2.5.4.16), OidEntry::new("postalAddress", "Postal Address"));
         self.insert(oid!(2.5.4.17), OidEntry::new("postalCode", "Postal Code"));
+        self.insert(oid!(2.5.4.41), OidEntry::new("name", "Name"));
         self.insert(oid!(2.5.4.42), OidEntry::new("givenName", "Given Name"));
         self.insert(oid!(2.5.4.45), OidEntry::new("uniqueIdentifier", "Bit String Unique Identifier"));
         self.insert(oid!(2.5.29.14), OidEntry::new("subjectKeyIdentifier", "X509v3 Subject Key Identifier"));
