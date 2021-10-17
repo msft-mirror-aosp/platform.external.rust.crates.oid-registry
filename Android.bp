@@ -48,6 +48,8 @@ rust_library {
     name: "liboid_registry",
     host_supported: true,
     crate_name: "oid_registry",
+    cargo_env_compat: true,
+    cargo_pkg_version: "0.2.0",
     srcs: [
         "src/lib.rs",
         ":copy_oid-registry_build_out",
@@ -76,6 +78,8 @@ rust_defaults {
         "src/lib.rs",
         ":copy_oid-registry_build_out",
     ],
+    cargo_env_compat: true,
+    cargo_pkg_version: "0.2.0",
     test_suites: ["general-tests"],
     auto_gen_config: true,
     edition: "2018",
