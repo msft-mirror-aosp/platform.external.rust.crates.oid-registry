@@ -71,17 +71,21 @@ rust_library {
     ],
 }
 
-rust_defaults {
-    name: "oid-registry_test_defaults",
+rust_test {
+    name: "oid-registry_test_src_lib",
+    host_supported: true,
     crate_name: "oid_registry",
+    cargo_env_compat: true,
+    cargo_pkg_version: "0.2.0",
     srcs: [
         "src/lib.rs",
         ":copy_oid-registry_build_out",
     ],
-    cargo_env_compat: true,
-    cargo_pkg_version: "0.2.0",
     test_suites: ["general-tests"],
     auto_gen_config: true,
+    test_options: {
+        unit_test: true,
+    },
     edition: "2018",
     features: [
         "crypto",
@@ -97,17 +101,4 @@ rust_defaults {
     rustlibs: [
         "libder_parser",
     ],
-}
-
-rust_test_host {
-    name: "oid-registry_host_test_src_lib",
-    defaults: ["oid-registry_test_defaults"],
-    test_options: {
-        unit_test: true,
-    },
-}
-
-rust_test {
-    name: "oid-registry_device_test_src_lib",
-    defaults: ["oid-registry_test_defaults"],
 }
