@@ -11,7 +11,21 @@
       "name": "microdroid_manager_test"
     },
     {
-      "name": "oid-registry_device_test_src_lib"
+      "name": "oid-registry_test_src_lib"
+    }
+  ],
+  "presubmit-rust": [
+    {
+      "name": "libapkverify.integration_test"
+    },
+    {
+      "name": "libapkverify.test"
+    },
+    {
+      "name": "microdroid_manager_test"
+    },
+    {
+      "name": "oid-registry_test_src_lib"
     }
   ]
 }
