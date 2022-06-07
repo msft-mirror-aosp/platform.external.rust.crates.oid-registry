@@ -69,6 +69,10 @@ rust_library {
     rustlibs: [
         "libder_parser",
     ],
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.virt",
+    ],
 }
 
 rust_test {
