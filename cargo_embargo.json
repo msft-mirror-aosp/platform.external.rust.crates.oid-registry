@@ -1,0 +1,16 @@
+{
+  "apex_available": [
+    "//apex_available:platform",
+    "com.android.virt"
+  ],
+  "features": [
+    "crypto",
+    "x509"
+  ],
+  "package": {
+    "oid-registry": {
+      "copy_out": true
+    }
+  },
+  "tests": true
+}
