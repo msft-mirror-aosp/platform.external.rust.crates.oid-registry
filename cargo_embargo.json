@@ -7,6 +7,11 @@
     "crypto",
     "x509"
   ],
+  "module_visibility": {
+    "liboid_registry": [
+      "//external/rust/crates/x509-parser"
+    ]
+  },
   "package": {
     "oid-registry": {
       "copy_out": true
